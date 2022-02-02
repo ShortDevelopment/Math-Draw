@@ -1,0 +1,78 @@
+﻿<Page
+    x:Class="MathDraw.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:MathDraw"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Background="{ThemeResource AppBarBackgroundThemeBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <InkToolbar x:Name="MainInkToolbar" TargetInkCanvas="{x:Bind MainCanvas}" Background="Transparent" />
+            <CommandBar Grid.Column="1" DefaultLabelPosition="Collapsed" Background="Transparent">
+                <AppBarButton Label="Undo" x:Name="UndoAppBarButton" Click="UndoAppBarButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xe7a7;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarSeparator />
+                <AppBarButton Label="Copy" x:Name="CopyAppBarButton" Click="CopyAppBarButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xe8c8;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Save" x:Name="SaveButton" Click="SaveButton_Click">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xe74e;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarSeparator />
+                <AppBarButton Label="Settings" x:Name="SettingsAppBarButton">
+                    <AppBarButton.Icon>
+                        <FontIcon Glyph="&#xe713;" />
+                    </AppBarButton.Icon>
+                    <AppBarButton.Flyout>
+                        <Flyout>
+                            <StackPanel>
+                                <TextBlock Text="Input" Style="{StaticResource BaseTextBlockStyle}" Margin="5,0,0,10" />
+                                <CheckBox Content="Enable Mouse Input" IsChecked="True" x:Name="MouseInputCheckBox" Checked="InputSettingsCheckBox_Checked" Unchecked="InputSettingsCheckBox_Checked" />
+                                <CheckBox Content="Enable Touch Input" IsChecked="True" x:Name="TouchInputCheckBox" Checked="InputSettingsCheckBox_Checked" Unchecked="InputSettingsCheckBox_Checked" />
+                            </StackPanel>
+                        </Flyout>
+                    </AppBarButton.Flyout>
+                </AppBarButton>
+            </CommandBar>
+        </Grid>
+        <Grid Grid.Row="1">
+            <ScrollViewer x:Name="rootScrollViewer" 
+	            ZoomMode="Enabled" MaxZoomFactor="5" MinZoomFactor="0.5"
+	            HorizontalScrollMode="Auto" HorizontalScrollBarVisibility="Auto"
+	            VerticalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+
+                <Viewbox x:Name="imageViewbox" Stretch="Uniform">
+                    <Grid Width="840" Height="1188" BorderThickness="1" BorderBrush="Gray">
+                        <Grid Background="White" />
+                        <InkCanvas x:Name="MainCanvas" />
+                    </Grid>
+                </Viewbox>
+
+            </ScrollViewer>
+        </Grid>
+
+        <controls:TeachingTip x:Name="SettingsTeachingTip1" 
+                              Target="{x:Bind SettingsAppBarButton}"
+                              PlacementMargin="10" PreferredPlacement="BottomLeft"
+                              Title="Settings"  Subtitle="Enable or disable touch and mouse input!">
+        </controls:TeachingTip>
+    </Grid>
+</Page>

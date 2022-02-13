@@ -5,6 +5,7 @@
     xmlns:local="using:MathDraw"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:developerTools="using:Microsoft.Toolkit.Uwp.DeveloperTools"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -62,6 +63,11 @@
                 <Viewbox x:Name="imageViewbox" Stretch="Uniform">
                     <Grid Width="840" Height="1188" BorderThickness="1" BorderBrush="Gray">
                         <Grid Background="White" />
+                        <developerTools:AlignmentGrid
+                            Opacity="0.2"
+                            LineBrush="Black"
+                            HorizontalStep="25"
+                            VerticalStep="25" />    
                         <InkCanvas x:Name="MainCanvas" />
                     </Grid>
                 </Viewbox>
